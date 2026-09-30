@@ -12,8 +12,10 @@ import SocialPill from "@/components/SocialPill.astro"
   <div class="anim-fade-in flex gap-4 mb-6 items-center">
     <div class="relative flex-shrink-0 lg:hidden">
       <img
-        class="relative rounded-full size-20 ring-1 ring-black/25 dark:ring-white/25"
-        src="/foto-perfil-min.jpg"
+        class="relative object-cover rounded-full size-20 ring-1 ring-black/25 dark:ring-white/25"
+        src="/foto-perfil-min.webp"
+        width="80"
+        height="80"
         alt={personalImageAlt}
       />
     </div>
@@ -68,7 +70,10 @@ import SocialPill from "@/components/SocialPill.astro"
     >
       <img
         class="object-cover size-full"
-        src="/foto-perfil.jpg"
+        src="/foto-perfil.webp"
+        width="800"
+        height="1041"
+        loading="lazy"
         alt={personalImageAlt}
       />
       <figcaption
