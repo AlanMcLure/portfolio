@@ -5,6 +5,7 @@
     "company": "CIPFP Ausiàs March - CIPFP Mislata",
     "description": "Grado Superior en Desarrollo de Aplicaciones Web (Java con Spring Boot y Angular). Ahora curso la especialización en Inteligencia Artificial y Big Data, con Python para procesar datos.",
     "link": "https://www.fpmislata.com/wordpress/",
-    "current": true
+    "current": true,
+    "linkLabel": "Saber más sobre el centro"
   }
 ]

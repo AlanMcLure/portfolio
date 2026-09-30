@@ -7,11 +7,20 @@ interface Props {
   company: string
   description: string
   link?: string
+  linkLabel?: string
   date: string
   current?: boolean
 }
 
-const { title, company, description, link, date, current = false } = Astro.props
+const {
+  title,
+  company,
+  description,
+  link,
+  linkLabel = `Saber más sobre ${company}`,
+  date,
+  current = false,
+} = Astro.props
 ---
 
 <div
@@ -43,7 +52,7 @@ const { title, company, description, link, date, current = false } = Astro.props
     {
       link && (
         <LinkInline href={link}>
-          Saber más sobre {company}{" "}
+          {linkLabel}{" "}
           <ArrowRight class="size-5" aria-hidden="true" />
         </LinkInline>
       )
