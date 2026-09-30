@@ -4,7 +4,9 @@ import Layout from "@/layouts/Layout.astro"
 import AboutMe from "@/components/AboutMe.astro"
 import Briefcase from "@/components/icons/Briefcase.astro"
 import CodeDots from "@/components/icons/CodeDots.astro"
+import education from "@/data/education.json"
 import Experience from "@/components/Experience.astro"
+import School from "@/components/icons/School.astro"
 import UserHeart from "@/components/icons/UserHeart.astro"
 import Projects from "@/components/Projects.astro"
 import SectionContainer from "@/components/SectionContainer.astro"
@@ -27,6 +29,14 @@ import TitleSection from "@/components/TitleSection.astro"
         Experiencia
       </TitleSection>
       <Experience />
+    </SectionContainer>
+
+    <SectionContainer id="formacion">
+      <TitleSection>
+        <School class="size-8" />
+        Formación
+      </TitleSection>
+      <Experience items={education} label="Formación académica" />
     </SectionContainer>
 
     <SectionContainer id="proyectos">
