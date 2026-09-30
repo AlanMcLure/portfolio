@@ -17,6 +17,7 @@ interface Project {
   image?: string
   link?: string
   github?: string
+  pendingLink?: boolean
 }
 
 const projects: Project[] = projectsData
@@ -49,7 +50,7 @@ const pad = (n: number) => String(n).padStart(2, "0")
 
 <div class="grid gap-16 md:grid-cols-2 md:gap-x-10">
   {
-    PROJECTS.map(({ slug, image, title, description, category, tags, link, github }, i) => (
+    PROJECTS.map(({ slug, image, title, description, category, tags, link, github, pendingLink }, i) => (
       <article
         data-project
         data-category={category}
@@ -118,6 +119,9 @@ const pad = (n: number) => String(n).padStart(2, "0")
                 <ExternalLink class="size-4" />
                 Preview
               </LinkButton>
+            )}
+            {pendingLink && (
+              <span class="font-mono text-xs tracking-wider text-accent dark:text-accent-light">[PENDING] Enlace</span>
             )}
           </footer>
         </div>

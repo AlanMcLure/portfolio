@@ -28,5 +28,51 @@
       "Añadir pruebas automáticas de los flujos principales.",
       "Actualizar el dashboard de forma automática durante los fines de semana de carrera."
     ]
+  },
+  {
+    "slug": "hub",
+    "draft": true,
+    "role": "Diseño y desarrollo de la web, en solitario.",
+    "problem": "Tenía varias apps Android para el Nothing Phone (3) repartidas en carpetas sin control de versiones y sin un sitio donde enseñarlas. El hub las reúne en una sola web pública, con una ficha por proyecto: qué hace, en qué estado está y con qué tecnología.",
+    "highlights": [
+      {
+        "title": "Glyph Studio",
+        "description": "Editor de glyphs 25×25 para el Nothing Phone (3): dibujo con animación, conversión desde imagen, GIF y vídeo, y reglas para asignar un glyph a cada app o contacto. En desarrollo."
+      },
+      {
+        "title": "Isaac Glyph",
+        "description": "Glyph Toy de colección inspirado en The Binding of Isaac: cae un objeto y se guarda en una galería. En desarrollo, sin relación con los creadores del juego."
+      }
+    ],
+    "decisions": [
+      {
+        "title": "Web estática con Next.js",
+        "description": "Next.js con exportación estática: sin servidor, sin base de datos, sin cookies ni analítica. Todo el contenido son archivos JSON y TypeScript."
+      },
+      {
+        "title": "Cinco idiomas",
+        "description": "Español, inglés, francés, chino e hindi, con etiquetas hreflang y sitemap. Chino e hindi usan fuentes del sistema para no cargar webfonts."
+      },
+      {
+        "title": "Sistema de diseño Nothing",
+        "description": "Negro OLED en oscuro, tipografías Space Grotesk, Space Mono y Doto, sin sombras ni degradados, y rojo solo como aviso."
+      },
+      {
+        "title": "Datos personales fuera del código",
+        "description": "Nombre, dirección y correo van en un único archivo. Mientras estén vacíos, la página legal muestra [PENDING] y el build avisa."
+      }
+    ],
+    "ai": "Construido con ayuda de Claude Code, guiado por un AGENTS.md y una skill de diseño que fijan las reglas de estilo y de contenido, como no inventar datos ni prometer funciones que no existen.",
+    "verification": "Cada cambio visual se comprueba en el navegador, en escritorio y a 390 px de ancho, y en un idioma no latino.",
+    "limits": [
+      "Ninguna de las apps se ha probado todavía en un teléfono real.",
+      "Las traducciones no han pasado por una revisión nativa ni el texto legal por una revisión profesional.",
+      "La web aún no está publicada."
+    ],
+    "next": [
+      "Publicarla en Cloudflare Pages y activar canonical, sitemap y Open Graph.",
+      "Añadir capturas de pantalla con texto alternativo.",
+      "Probar las apps en un Nothing Phone (3) y actualizar sus notas de estado."
+    ]
   }
 ]

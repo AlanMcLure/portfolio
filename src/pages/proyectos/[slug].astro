@@ -18,11 +18,14 @@ interface Project {
   image?: string
   link?: string
   github?: string
+  pendingLink?: boolean
 }
 
 interface CaseStudy {
   slug: string
   example?: boolean
+  draft?: boolean
+  highlights?: { title: string; description: string }[]
   role: string
   problem: string
   decisions: { title: string; description: string }[]
@@ -47,6 +50,8 @@ export function getStaticPaths() {
 
 const { project, study } = Astro.props as { project: Project; study?: CaseStudy }
 const tags = project.tags.map(getTag)
+let section = 0
+const num = () => String(++section).padStart(2, "0")
 const heading = project.shortTitle ?? project.title
 const subtitle = project.shortTitle
   ? project.title.replace(new RegExp(`^${project.shortTitle}\\s*[-–:]\\s*`), "")
@@ -104,6 +109,9 @@ const subtitle = project.shortTitle
             Preview
           </LinkButton>
         )}
+        {project.pendingLink && (
+          <span class="font-mono text-xs tracking-wider text-accent dark:text-accent-light">[PENDING] Enlace publicado más adelante</span>
+        )}
       </div>
 
       {project.image && (
@@ -124,18 +132,38 @@ const subtitle = project.shortTitle
             </p>
           )}
 
+          {study.draft && (
+            <p class="px-4 py-3 mb-10 font-mono text-xs border rounded-xl border-accent/50 text-accent dark:text-accent-light">
+              Borrador: los textos salen de la documentación del proyecto y están pendientes de tu revisión.
+            </p>
+          )}
+
           <p class="text-sm text-gray-600 dark:text-gray-400">
             <span class="font-mono tracking-wider uppercase">Rol</span> · {study.role}
           </p>
 
           <div class="mt-10 space-y-14">
             <section>
-              <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">01 · EL PROBLEMA</h2>
+              <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">{num()} · EL PROBLEMA</h2>
               <p class="text-lg text-gray-800 dark:text-gray-200 text-pretty">{study.problem}</p>
             </section>
 
+            {study.highlights && (
+              <section>
+                <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">{num()} · PROYECTOS DESTACADOS</h2>
+                <ul class="grid gap-4 sm:grid-cols-2">
+                  {study.highlights.map((item) => (
+                    <li class="p-6 border rounded-2xl border-black/15 dark:border-white/15">
+                      <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">{item.title}</h3>
+                      <p class="mt-2 text-gray-700 dark:text-gray-400 text-pretty">{item.description}</p>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
             <section>
-              <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">02 · DECISIONES TÉCNICAS</h2>
+              <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">{num()} · DECISIONES TÉCNICAS</h2>
               <ul class="grid gap-4 sm:grid-cols-2">
                 {study.decisions.map((decision) => (
                   <li class="p-6 border rounded-2xl border-black/15 dark:border-white/15">
@@ -147,24 +175,24 @@ const subtitle = project.shortTitle
             </section>
 
             <section>
-              <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">03 · CÓMO USÉ LA IA</h2>
+              <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">{num()} · CÓMO USÉ LA IA</h2>
               <p class="text-gray-800 dark:text-gray-200 text-pretty">{study.ai}</p>
             </section>
 
             <section>
-              <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">04 · VERIFICACIÓN</h2>
+              <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">{num()} · VERIFICACIÓN</h2>
               <p class="text-gray-800 dark:text-gray-200 text-pretty">{study.verification}</p>
             </section>
 
             <section class="grid gap-10 sm:grid-cols-2">
               <div>
-                <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">05 · LIMITACIONES</h2>
+                <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">{num()} · LIMITACIONES</h2>
                 <ul class="pl-5 space-y-2 text-gray-800 list-disc dark:text-gray-200 marker:text-accent">
                   {study.limits.map((item) => <li>{item}</li>)}
                 </ul>
               </div>
               <div>
-                <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">06 · QUÉ MEJORARÍA</h2>
+                <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">{num()} · QUÉ MEJORARÍA</h2>
                 <ul class="pl-5 space-y-2 text-gray-800 list-disc dark:text-gray-200 marker:text-accent">
                   {study.next.map((item) => <li>{item}</li>)}
                 </ul>

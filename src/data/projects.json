@@ -12,5 +12,17 @@
     "category": "Web",
     "slug": "fastlap",
     "shortTitle": "FastLap"
+  },
+  {
+    "title": "Hub - Proyectos con estética Nothing",
+    "description": "Web con mis apps y repositorios para el Nothing Phone (3): Glyph Studio, Isaac Glyph y más. Estática, en cinco idiomas y con SEO. Hecha con Next.js y el sistema de diseño Nothing.",
+    "pendingLink": true,
+    "category": "Web",
+    "tags": [
+      "NEXT",
+      "TYPESCRIPT"
+    ],
+    "slug": "hub",
+    "shortTitle": "Hub"
   }
 ]
