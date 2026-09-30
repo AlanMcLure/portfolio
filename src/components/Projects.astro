@@ -5,8 +5,10 @@ import Tailwind from "./icons/Tailwind.astro"
 import ExternalLink from "./icons/ExternalLink.astro"
 import LinkButton from "./LinkButton.astro"
 import projectsData from "@/data/projects.json"
+import caseStudies from "@/data/case-studies.json"
 
 interface Project {
+  slug?: string
   title: string
   description: string
   category: string
@@ -50,6 +52,9 @@ const PROJECTS = projects.map((project) => ({
   tags: project.tags.map((key) => TAGS[key] ?? fallbackTag(key)),
 }))
 
+const caseStudyFor = (slug?: string) =>
+  caseStudies.find((study) => study.slug === slug)
+
 const categories = [...new Set(PROJECTS.map((project) => project.category))]
 const pad = (n: number) => String(n).padStart(2, "0")
 ---
@@ -73,7 +78,7 @@ const pad = (n: number) => String(n).padStart(2, "0")
 
 <div class="grid gap-16 md:grid-cols-2 md:gap-x-10">
   {
-    PROJECTS.map(({ image, title, description, category, tags, link, github }, i) => (
+    PROJECTS.map(({ slug, image, title, description, category, tags, link, github }, i) => (
       <article
         data-project
         data-category={category}
@@ -119,7 +124,12 @@ const pad = (n: number) => String(n).padStart(2, "0")
           </ul>
 
           <p class="mt-3 text-gray-700 dark:text-gray-400 text-pretty">{description}</p>
-          <footer class="flex items-center mt-4 gap-x-4">
+          <footer class="flex flex-wrap items-center mt-4 gap-4">
+            {caseStudyFor(slug) && (
+              <LinkButton href={`/proyectos/${slug}`} target="_self">
+                Caso de estudio{caseStudyFor(slug)?.example ? " (ejemplo)" : ""}
+              </LinkButton>
+            )}
             {github && (
               <LinkButton href={github}>
                 <GitHub class="size-5" />

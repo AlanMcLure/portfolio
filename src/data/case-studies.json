@@ -1,0 +1,36 @@
+[
+  {
+    "slug": "fastlap",
+    "example": true,
+    "title": "FastLap",
+    "subtitle": "Red social para aficionados de la Fórmula 1",
+    "summary": "Proyecto Final de Grado: una red social inspirada en Reddit, con un dashboard para seguir la Fórmula 1.",
+    "role": "Desarrollo completo del proyecto, en solitario.",
+    "stack": ["Next.js", "React", "Tailwind CSS"],
+    "problem": "Los aficionados de la Fórmula 1 suelen repartirse entre varias redes sociales para comentar y webs distintas para consultar datos. FastLap junta las dos cosas: una comunidad donde conversar y un dashboard con la información de la temporada.",
+    "decisions": [
+      {
+        "title": "Next.js como base",
+        "description": "Permite combinar páginas renderizadas en servidor y rutas de API en un mismo proyecto, y desplegarlo con facilidad en Vercel."
+      },
+      {
+        "title": "Comunidad al estilo Reddit",
+        "description": "Publicaciones, comentarios y votos como núcleo, porque es un modelo que los usuarios ya conocen y no hay que enseñarles a usarlo."
+      },
+      {
+        "title": "Dashboard separado del feed",
+        "description": "Los datos de la temporada viven en su propia vista para que la conversación no se mezcle con las tablas y las estadísticas."
+      }
+    ],
+    "ai": "Usé IA para acelerar tareas repetitivas, como componentes de interfaz y datos de prueba. La estructura, el modelo de datos y las decisiones de diseño las definí yo, y revisé cada cambio antes de aceptarlo.",
+    "verification": "Probé los flujos principales a mano (registro, publicar, comentar, votar) y comprobé que el dashboard mostraba los datos esperados antes de cada entrega.",
+    "limits": [
+      "Todavía no tiene pruebas automáticas.",
+      "Los datos del dashboard no se actualizan en tiempo real."
+    ],
+    "next": [
+      "Añadir pruebas automáticas de los flujos principales.",
+      "Actualizar el dashboard de forma automática durante los fines de semana de carrera."
+    ]
+  }
+]

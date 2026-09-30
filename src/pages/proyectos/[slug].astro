@@ -1,0 +1,118 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import SectionContainer from "@/components/SectionContainer.astro"
+import studies from "@/data/case-studies.json"
+
+interface CaseStudy {
+  slug: string
+  example?: boolean
+  title: string
+  subtitle: string
+  summary: string
+  role: string
+  stack: string[]
+  problem: string
+  decisions: { title: string; description: string }[]
+  ai: string
+  verification: string
+  limits: string[]
+  next: string[]
+}
+
+export function getStaticPaths() {
+  return (studies as CaseStudy[]).map((study) => ({
+    params: { slug: study.slug },
+    props: { study },
+  }))
+}
+
+const { study } = Astro.props as { study: CaseStudy }
+---
+
+<Layout
+  title={`${study.title} · Caso de estudio · Alan McLure`}
+  description={study.summary}
+>
+  <main class="px-4">
+    <SectionContainer class="py-32 md:py-40">
+      <a
+        href="/#proyectos"
+        class="font-mono text-xs tracking-wider text-gray-600 uppercase dark:text-gray-400 hover:text-accent dark:hover:text-accent-light"
+      >
+        ← Proyectos
+      </a>
+
+      {
+        study.example && (
+          <p class="px-4 py-3 mt-6 font-mono text-xs border rounded-xl border-accent/50 text-accent dark:text-accent-light">
+            Contenido de ejemplo: los textos son ilustrativos y no están validados.
+          </p>
+        )
+      }
+
+      <h1 class="mt-8 text-5xl font-black text-gray-800 font-dot sm:text-6xl dark:text-white">
+        {study.title}
+      </h1>
+      <p class="mt-3 text-xl text-gray-700 dark:text-gray-300">{study.subtitle}</p>
+
+      <ul class="flex flex-wrap gap-2 mt-5">
+        {
+          study.stack.map((item) => (
+            <li class="px-3 py-1 font-mono text-xs border rounded-full border-black/20 dark:border-white/25 text-gray-800 dark:text-white/80">
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+        <span class="font-mono tracking-wider uppercase">Rol</span> · {study.role}
+      </p>
+
+      <div class="mt-16 space-y-14">
+        <section>
+          <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">01 · EL PROBLEMA</h2>
+          <p class="text-lg text-gray-800 dark:text-gray-200 text-pretty">{study.problem}</p>
+        </section>
+
+        <section>
+          <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">02 · DECISIONES TÉCNICAS</h2>
+          <ul class="grid gap-4 sm:grid-cols-2">
+            {
+              study.decisions.map((decision) => (
+                <li class="p-6 border rounded-2xl border-black/15 dark:border-white/15">
+                  <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">{decision.title}</h3>
+                  <p class="mt-2 text-gray-700 dark:text-gray-400 text-pretty">{decision.description}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">03 · CÓMO USÉ LA IA</h2>
+          <p class="text-gray-800 dark:text-gray-200 text-pretty">{study.ai}</p>
+        </section>
+
+        <section>
+          <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">04 · VERIFICACIÓN</h2>
+          <p class="text-gray-800 dark:text-gray-200 text-pretty">{study.verification}</p>
+        </section>
+
+        <section class="grid gap-10 sm:grid-cols-2">
+          <div>
+            <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">05 · LIMITACIONES</h2>
+            <ul class="pl-5 space-y-2 text-gray-800 list-disc dark:text-gray-200 marker:text-accent">
+              {study.limits.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+          <div>
+            <h2 class="mb-4 font-mono text-xs tracking-wider text-accent dark:text-accent-light">06 · QUÉ MEJORARÍA</h2>
+            <ul class="pl-5 space-y-2 text-gray-800 list-disc dark:text-gray-200 marker:text-accent">
+              {study.next.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </section>
+      </div>
+    </SectionContainer>
+  </main>
+</Layout>
