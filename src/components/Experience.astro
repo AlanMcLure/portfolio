@@ -2,8 +2,18 @@
 import ExperienceItem from "./ExperienceItem.astro"
 import experience from "@/data/experience.json"
 
+interface Entry {
+  date: string
+  title: string
+  company: string
+  description: string
+  link?: string
+  linkLabel?: string
+  current?: boolean
+}
+
 interface Props {
-  items?: typeof experience
+  items?: Entry[]
   label?: string
 }
 

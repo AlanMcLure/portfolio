@@ -1,11 +1,15 @@
 [
   {
-    "date": "Septiembre 2022 - Actualmente",
-    "title": "Estudios",
-    "company": "CIPFP Ausiàs March - CIPFP Mislata",
-    "description": "Grado Superior en Desarrollo de Aplicaciones Web (Java con Spring Boot y Angular). Ahora curso la especialización en Inteligencia Artificial y Big Data, con Python para procesar datos.",
-    "link": "https://www.fpmislata.com/wordpress/",
-    "current": true,
-    "linkLabel": "Saber más sobre el centro"
+    "date": "2024 - 2025",
+    "title": "Curso de Especialización en Inteligencia Artificial y Big Data",
+    "company": "CIPFP Mislata",
+    "description": "Formación en análisis de datos y procesamiento de grandes volúmenes de información con Python.",
+    "link": "https://www.fpmislata.com/wordpress/"
+  },
+  {
+    "date": "2022 - 2024",
+    "title": "Grado Superior DAW",
+    "company": "CIPFP Ausiàs March",
+    "description": "Grado Superior en Desarrollo de Aplicaciones Web, con Java, Spring Boot y Angular."
   }
 ]
