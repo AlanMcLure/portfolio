@@ -7,7 +7,7 @@ Es un sitio estático (Astro genera `dist/`), así que funciona en cualquier hos
 | Qué | Dónde | Por qué |
 |---|---|---|
 | **`site`** | `astro.config.mjs` (ahora `https://porfolio.dev/`) | Es el dominio de midudev. De ahí salen el canonical, `og:url`, `og:image` y la URL del JSON-LD. Publicado así, tus páginas dirían a Google que el original es la web de otra persona. Hay que poner tu URL real. |
-| **`robots.txt` y sitemap** | Lo genera `astro-robots-txt` | Apunta a `<site>/sitemap-index.xml`, pero no hay integración de sitemap, así que el enlace no existe. Hay que añadir `@astrojs/sitemap` o dejarlo sin sitemap. |
+| **`robots.txt` y sitemap** | `astro-robots-txt` y `@astrojs/sitemap` | Ya se generan los dos, pero usan `site`, así que hasta cambiarlo apuntan al dominio de midudev. Se corrigen solos al poner tu URL. `/components` está excluido del sitemap y marcado `noindex`. |
 | **"Empresa X"** | `src/data/experience.json` y `public/cv-alan-mclure.pdf` | Es un marcador. El CV es genérico y también lo lleva. |
 | **Caso de estudio de FastLap** | `src/data/case-studies.json` | Es un ejemplo sin validar (`"example": true`). Contestar las preguntas de `docs/casos-de-estudio.md` o quitar la entrada. |
 | **Sección "Cómo trabajo con IA"** | `src/data/ia-workflow.json` | Es un borrador. Revisarlo para que describa la forma real de trabajar. |
@@ -32,6 +32,6 @@ Para probarlo antes:
 
 1. Revisar la rama en local y decidir qué se queda.
 2. Rellenar o quitar los marcadores de la tabla de arriba.
-3. Poner `site` con la URL definitiva y arreglar el sitemap.
+3. Poner `site` con la URL definitiva (el sitemap y `robots.txt` se actualizan solos).
 4. `npm run build` sin errores.
 5. Fusionar (por PR o merge), y comprobar la web publicada: canonical, imagen al compartir el enlace, descarga del CV y enlaces de las páginas de proyecto.
