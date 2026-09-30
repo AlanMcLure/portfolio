@@ -2,11 +2,7 @@
   {
     "slug": "fastlap",
     "example": true,
-    "title": "FastLap",
-    "subtitle": "Red social para aficionados de la Fórmula 1",
-    "summary": "Proyecto Final de Grado: una red social inspirada en Reddit, con un dashboard para seguir la Fórmula 1.",
     "role": "Desarrollo completo del proyecto, en solitario.",
-    "stack": ["Next.js", "React", "Tailwind CSS"],
     "problem": "Los aficionados de la Fórmula 1 suelen repartirse entre varias redes sociales para comentar y webs distintas para consultar datos. FastLap junta las dos cosas: una comunidad donde conversar y un dashboard con la información de la temporada.",
     "decisions": [
       {

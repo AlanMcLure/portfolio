@@ -15,7 +15,7 @@ Regla de oro: **solo se escribe lo que es cierto y se puede defender en una entr
 | 05 | Limitaciones | `limits` | ¿Qué no hace o qué falla? |
 | 06 | Qué mejoraría | `next` | ¿Qué haría distinto hoy? |
 
-Además: `title`, `subtitle`, `summary` (para el SEO), `role` (qué parte hice yo) y `stack`.
+Además, `role` (qué parte hice yo). El título, la descripción, las etiquetas y los enlaces salen de `projects.json`.
 
 ## Proceso de preguntas (para cualquier proyecto)
 
@@ -48,18 +48,23 @@ Además de las generales:
 - ¿Qué parte del proyecto fue la más costosa de hacer?
 - ¿Se usó el repositorio `AlanMcLure/Fastlap` como referencia para contrastar las respuestas? (opcional: se puede dar acceso a la sesión para leer el código y responder solo las preguntas técnicas).
 
+## Cómo se muestra en el portfolio
+
+Cada proyecto con `slug` en `src/data/projects.json` tiene su **página de detalle** (`/proyectos/<slug>`): título, categoría, etiquetas, descripción, botones de Code y Preview, la imagen grande y, si existe, el caso de estudio debajo. En la tarjeta de Proyectos, la imagen, el título y "Ver proyecto →" llevan a esa página.
+
+- Un proyecto **sin caso de estudio** tiene igualmente su página de detalle, solo que sin las secciones del caso.
+- El campo opcional `shortTitle` de `projects.json` es el nombre corto que sale como título grande de la página (por ejemplo `FastLap`); el subtítulo es el resto del `title`.
+
 ## Estado actual
 
-**El caso de FastLap que hay en `src/data/case-studies.json` es un ejemplo ilustrativo**, escrito solo para ver cómo queda la página. Lo único que viene de datos reales es el stack (Next.js, React, Tailwind CSS) y que es el Proyecto Final de Grado, una red social tipo Reddit con dashboard. Todo lo demás está sin validar.
+**El caso de FastLap que hay en `src/data/case-studies.json` es un ejemplo ilustrativo**, escrito solo para ver cómo queda la página. Lo único que viene de datos reales es que es el Proyecto Final de Grado, una red social tipo Reddit con dashboard en Next.js y Tailwind CSS. Todo lo demás está sin validar.
 
-Lleva `"example": true`, así que la página muestra un aviso y el botón de la tarjeta dice "Caso de estudio (ejemplo)". Antes de publicar:
+Lleva `"example": true`, así que la página muestra un aviso rojo. Antes de publicar:
 1. Contestar las preguntas y sustituir los textos.
-2. Quitar `"example": true` (desaparecen el aviso y el "(ejemplo)").
+2. Quitar `"example": true` (desaparece el aviso).
 
-## Cómo añadir un caso de estudio nuevo
+## Cómo añadir un proyecto nuevo
 
-1. Añadir el proyecto a `src/data/projects.json` con un `slug` (por ejemplo `"widget-nothing"`).
-2. Añadir una entrada a `src/data/case-studies.json` con el mismo `slug` y los campos de la tabla.
-3. La página `/proyectos/<slug>` se genera sola y la tarjeta del proyecto muestra el botón "Caso de estudio".
-
-Un proyecto sin entrada en `case-studies.json` sigue funcionando: la tarjeta simplemente no muestra el botón.
+1. Añadir el proyecto a `src/data/projects.json` con un `slug` (por ejemplo `"widget-nothing"`), y opcionalmente `shortTitle`. Ya tiene página de detalle.
+2. Si tiene caso de estudio, añadir una entrada a `src/data/case-studies.json` con el mismo `slug` y los campos de la tabla (`role`, `problem`, `decisions`, `ai`, `verification`, `limits`, `next`).
+3. Las etiquetas (`tags`) con marca propia se definen en `src/components/projectTags.ts`; las demás salen como una píldora neutra.

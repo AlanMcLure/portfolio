@@ -1,14 +1,15 @@
 ---
 import GitHub from "./icons/GitHub.astro"
-import NextJS from "./icons/NextJS.astro"
-import Tailwind from "./icons/Tailwind.astro"
 import ExternalLink from "./icons/ExternalLink.astro"
 import LinkButton from "./LinkButton.astro"
 import projectsData from "@/data/projects.json"
-import caseStudies from "@/data/case-studies.json"
+import { getTag } from "./projectTags"
+import LinkInline from "./LinkInline.astro"
+import ArrowRight from "./icons/ArrowRight.astro"
 
 interface Project {
   slug?: string
+  shortTitle?: string
   title: string
   description: string
   category: string
@@ -18,42 +19,12 @@ interface Project {
   github?: string
 }
 
-interface Tag {
-  name: string
-  class: string
-  icon: any
-}
-
-const TAGS: Record<string, Tag> = {
-  NEXT: {
-    name: "Next.js",
-    class: "bg-black text-white",
-    icon: NextJS,
-  },
-  TAILWIND: {
-    name: "Tailwind CSS",
-    class: "bg-[#003159] text-white",
-    icon: Tailwind,
-  },
-}
-
-// Tags without a brand entry above fall back to a neutral mono pill
-const fallbackTag = (name: string): Tag => ({
-  name,
-  class:
-    "border border-black/20 dark:border-white/25 text-gray-800 dark:text-white/80 font-mono",
-  icon: null,
-})
-
 const projects: Project[] = projectsData
 
 const PROJECTS = projects.map((project) => ({
   ...project,
-  tags: project.tags.map((key) => TAGS[key] ?? fallbackTag(key)),
+  tags: project.tags.map(getTag),
 }))
-
-const caseStudyFor = (slug?: string) =>
-  caseStudies.find((study) => study.slug === slug)
 
 const categories = [...new Set(PROJECTS.map((project) => project.category))]
 const pad = (n: number) => String(n).padStart(2, "0")
@@ -87,7 +58,11 @@ const pad = (n: number) => String(n).padStart(2, "0")
           i === 0 && "md:col-span-2 md:flex-row md:gap-10",
         ]}
       >
-        <div class:list={["w-full", i === 0 && "md:w-1/2"]}>
+        <a
+          href={slug ? `/proyectos/${slug}` : undefined}
+          aria-label={slug ? `Ver el proyecto ${title}` : undefined}
+          class:list={["block w-full", i === 0 && "md:w-1/2"]}
+        >
           <div class="relative flex flex-col items-center overflow-clip rounded-2xl border border-black/15 dark:border-white/15 transition-all duration-500 ease-in-out md:group-hover:-translate-y-1 md:group-hover:border-accent/50 md:group-hover:shadow-[0_20px_60px_-10px_rgba(215,25,33,0.2)]">
             {image ? (
               <img
@@ -105,13 +80,15 @@ const pad = (n: number) => String(n).padStart(2, "0")
               </div>
             )}
           </div>
-        </div>
+        </a>
 
         <div class:list={["flex flex-col justify-center w-full", i === 0 && "md:w-1/2 md:max-w-lg"]}>
           <span class="mb-2 font-mono text-xs tracking-wider text-accent dark:text-accent-light uppercase">
             {pad(i + 1)} / {pad(PROJECTS.length)} · {category}
           </span>
-          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">{title}</h3>
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+            {slug ? <a href={`/proyectos/${slug}`} class="hover:underline underline-offset-4">{title}</a> : title}
+          </h3>
           <ul class="flex flex-row flex-wrap gap-2 mt-3">
             {tags.map((tag) => (
               <li>
@@ -125,10 +102,10 @@ const pad = (n: number) => String(n).padStart(2, "0")
 
           <p class="mt-3 text-gray-700 dark:text-gray-400 text-pretty">{description}</p>
           <footer class="flex flex-wrap items-center mt-4 gap-4">
-            {caseStudyFor(slug) && (
-              <LinkButton href={`/proyectos/${slug}`} target="_self">
-                Caso de estudio{caseStudyFor(slug)?.example ? " (ejemplo)" : ""}
-              </LinkButton>
+            {slug && (
+              <LinkInline href={`/proyectos/${slug}`}>
+                Ver proyecto <ArrowRight class="size-5" aria-hidden="true" />
+              </LinkInline>
             )}
             {github && (
               <LinkButton href={github}>
