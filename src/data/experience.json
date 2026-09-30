@@ -1,5 +1,12 @@
 [
   {
+    "date": "Julio 2025 - Actualidad",
+    "title": "Software Developer",
+    "company": "Empresa X",
+    "description": "Desarrollo de automatizaciones, software y aplicaciones móviles apoyado en IA. Diseño agentes y flujos de trabajo con Claude Code y otras herramientas de IA generativa.",
+    "current": true
+  },
+  {
     "date": "Marzo 2024 - Julio 2024",
     "title": "Junior Software Developer",
     "company": "Digital Value",
