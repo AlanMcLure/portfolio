@@ -42,6 +42,10 @@
       {
         "title": "Isaac Glyph",
         "description": "Glyph Toy de colección inspirado en The Binding of Isaac: cae un objeto y se guarda en una galería. En desarrollo, sin relación con los creadores del juego."
+      },
+      {
+        "title": "Glyph Tools",
+        "description": "Conversor de imagen o GIF a glyph, en Python: escribe el JSON de 489 valores de brillo que Glyph Studio importa tal cual. Es una herramienta de línea de comandos y sigue en fase de idea."
       }
     ],
     "decisions": [
