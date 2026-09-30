@@ -5,6 +5,10 @@
     "link": "https://fastlap-alanmclures-projects.vercel.app/",
     "github": "https://github.com/AlanMcLure/Fastlap",
     "image": "/projects/fastlap.webp",
-    "tags": ["NEXT", "TAILWIND"]
+    "tags": [
+      "NEXT",
+      "TAILWIND"
+    ],
+    "category": "Web"
   }
 ]
