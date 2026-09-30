@@ -1,27 +1,26 @@
-# 👨🏻‍💻 Porfolio para programadores y desarrolladores
+# Porfolio de Alan McLure
 
-<div align="center">
-<a href="https://porfolio.dev/">
-<img src="./public/porfolio.webp">
-</a>
-<p></p>
-</div>
-
-<div align="center">
+Mi porfolio personal: experiencia, proyectos y sobre mí. Es una web estática hecha con Astro y Tailwind CSS, con el contenido en español.
 
 ![Astro Badge](https://img.shields.io/badge/Astro-FF3E00?logo=astro&logoColor=fff&style=flat)
 ![Tailwind CSS Badge](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=fff&style=flat)
-![GitHub stars](https://img.shields.io/github/stars/midudev/porfolio.dev)
-![GitHub PRs](https://img.shields.io/github/issues-pr/midudev/porfolio.dev)
-![GitHub forks](https://img.shields.io/github/forks/midudev/porfolio.dev)
-![GitHub issues](https://img.shields.io/github/issues/midudev/porfolio.dev)
 
-</div>
+## Desarrollo
 
-## 🫂 Contribuidores
+```bash
+npm install
+npm run dev      # servidor de desarrollo
+npm run build    # comprueba tipos (astro check) y genera dist/
+npm run preview  # sirve dist/ en local
+```
 
-<a href="https://github.com/midudev/porfolio.dev/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=midudev/porfolio.dev" />
-</a>
+## Estructura
 
-<p></p>
+- `src/pages/index.astro`: la página principal, que junta Hero, Experiencia, Proyectos y Sobre mí.
+- `src/pages/components.astro`: catálogo de componentes compartidos (`/components`).
+- `src/data/experience.json` y `src/data/projects.json`: el contenido de las secciones de Experiencia y Proyectos.
+- `src/components/`: componentes de la web. Los iconos están en `src/components/icons/`.
+
+## Créditos
+
+Basado en [midudev/porfolio.dev](https://github.com/midudev/porfolio.dev), personalizado con mi contenido.

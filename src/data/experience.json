@@ -7,17 +7,17 @@
     "link": "https://digitalvalue.es/"
   },
   {
-    "date": "Junio 2021 - Junio 2022",
-    "title": "Junior Software Developer",
-    "company": "CoCircular",
-    "description": "Gestión de bases de datos con PostgreSQL, desarrollo de componentes en React y Angular. Implementación de visualización de datos con gráficos en Biuwer y contribución a la internacionalización (i18n) del proyecto, asegurando una experiencia multilingüe y accesible globalmente.",
-    "link": "https://cocircular.es/"
-  },
-  {
     "date": "Septiembre 2022 - Actualmente",
     "title": "Estudios",
     "company": "CIPFP Ausiàs March - CIPFP Mislata",
     "description": "He estudiado el Grado Superior en Desarrollo de Aplicaciones Web (DAW), donde trabajé con tecnologías como Java con Spring Boot y Angular. Actualmente, estoy cursando un curso de especialización en Inteligencia Artificial y Big Data, enfocado en el análisis de datos, en el que estoy utilizando Python para desarrollar soluciones relacionadas con el procesamiento y análisis de grandes volúmenes de información.",
     "link": "https://www.fpmislata.com/wordpress/"
+  },
+  {
+    "date": "Junio 2021 - Junio 2022",
+    "title": "Junior Software Developer",
+    "company": "CoCircular",
+    "description": "Gestión de bases de datos con PostgreSQL, desarrollo de componentes en React y Angular. Implementación de visualización de datos con gráficos en Biuwer y contribución a la internacionalización (i18n) del proyecto, asegurando una experiencia multilingüe y accesible globalmente.",
+    "link": "https://cocircular.es/"
   }
 ]
