@@ -1,0 +1,43 @@
+---
+import GitHubIcon from "@/components/icons/GitHub.astro"
+import LinkedInIcon from "@/components/icons/LinkedIn.astro"
+import MailIcon from "@/components/icons/Mail.astro"
+import SocialPill from "@/components/SocialPill.astro"
+
+const email = "amclurealarcon@gmail.com"
+---
+
+<div
+  class="p-8 border rounded-2xl border-black/15 dark:border-white/15 md:p-12 bg-[radial-gradient(rgba(0,0,0,0.08)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:18px_18px]"
+>
+  <p class="text-5xl font-black text-gray-800 font-dot sm:text-6xl dark:text-white">
+    ¿Hablamos?
+  </p>
+  <p class="max-w-md mt-4 text-gray-700 dark:text-gray-300 text-pretty">
+    Si tienes un proyecto, una idea o una oferta, escríbeme y lo hablamos.
+  </p>
+  <a
+    href={`mailto:${email}`}
+    class="block mt-6 font-mono text-sm text-accent dark:text-accent-light hover:underline underline-offset-4 break-all"
+  >
+    {email}
+  </a>
+
+  <div class="flex flex-wrap gap-4 mt-8">
+    <a
+      href={`mailto:${email}`}
+      class="inline-flex items-center justify-center gap-2 px-5 py-1.5 text-white transition rounded-full bg-accent hover:bg-red-800 focus:outline-none focus-visible:ring focus-visible:ring-accent/80 focus-visible:ring-offset-2"
+    >
+      <MailIcon class="size-4" />
+      Escríbeme
+    </a>
+    <SocialPill href="https://linkedin.com/in/alanmclurealarcon">
+      <LinkedInIcon class="size-4" />
+      LinkedIn
+    </SocialPill>
+    <SocialPill href="https://github.com/AlanMcLure">
+      <GitHubIcon class="size-4" />
+      GitHub
+    </SocialPill>
+  </div>
+</div>
