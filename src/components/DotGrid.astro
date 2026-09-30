@@ -1,0 +1,117 @@
+---
+// Highlights the background dots near the cursor. The base grid is drawn in CSS
+// (see Layout.astro); this canvas only paints the dots that react, so both grids
+// must share the same spacing.
+---
+
+<canvas
+  id="dot-grid"
+  class="fixed inset-0 z-[-1] pointer-events-none"
+  aria-hidden="true"></canvas>
+
+<script>
+  const SPACING = 22
+  const RADIUS = 120
+
+  let cleanup: (() => void) | undefined
+
+  function init() {
+    cleanup?.()
+
+    const canvas = document.getElementById("dot-grid") as HTMLCanvasElement | null
+    const ctx = canvas?.getContext("2d")
+    if (!canvas || !ctx) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+
+    let width = 0
+    let height = 0
+    let x = -1000
+    let y = -1000
+    let targetX = -1000
+    let targetY = -1000
+    let intensity = 0
+    let targetIntensity = 0
+    let frame = 0
+
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1
+      width = window.innerWidth
+      height = window.innerHeight
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+
+    const draw = () => {
+      frame = 0
+      x += (targetX - x) * 0.2
+      y += (targetY - y) * 0.2
+      intensity += (targetIntensity - intensity) * 0.12
+
+      ctx.clearRect(0, 0, width, height)
+      const rgb = document.documentElement.classList.contains("dark")
+        ? "255, 77, 85"
+        : "215, 25, 33"
+
+      const firstCol = Math.max(0, Math.floor((x - RADIUS) / SPACING))
+      const lastCol = Math.ceil((x + RADIUS) / SPACING)
+      const firstRow = Math.max(0, Math.floor((y - RADIUS) / SPACING))
+      const lastRow = Math.ceil((y + RADIUS) / SPACING)
+
+      for (let col = firstCol; col <= lastCol; col++) {
+        for (let row = firstRow; row <= lastRow; row++) {
+          const cx = SPACING / 2 + col * SPACING
+          const cy = SPACING / 2 + row * SPACING
+          const distance = Math.hypot(cx - x, cy - y)
+          if (distance > RADIUS) continue
+
+          const falloff = 1 - distance / RADIUS
+          const strength = falloff * falloff * intensity
+          if (strength < 0.03) continue
+
+          ctx.fillStyle = `rgba(${rgb}, ${Math.min(1, strength * 0.95)})`
+          ctx.beginPath()
+          ctx.arc(cx, cy, 1 + strength * 2.4, 0, Math.PI * 2)
+          ctx.fill()
+        }
+      }
+
+      const moving =
+        intensity > 0.01 ||
+        Math.abs(targetX - x) > 0.5 ||
+        Math.abs(targetY - y) > 0.5
+      if (moving) schedule()
+    }
+
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(draw)
+    }
+
+    const onMove = (event: PointerEvent) => {
+      if (event.pointerType === "touch") return
+      targetX = event.clientX
+      targetY = event.clientY
+      targetIntensity = 1
+      schedule()
+    }
+
+    const onLeave = () => {
+      targetIntensity = 0
+      schedule()
+    }
+
+    resize()
+    window.addEventListener("resize", resize)
+    window.addEventListener("pointermove", onMove)
+    document.documentElement.addEventListener("mouseleave", onLeave)
+
+    cleanup = () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener("resize", resize)
+      window.removeEventListener("pointermove", onMove)
+      document.documentElement.removeEventListener("mouseleave", onLeave)
+    }
+  }
+
+  document.addEventListener("astro:page-load", init)
+</script>

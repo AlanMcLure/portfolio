@@ -22,11 +22,18 @@ Con la IA, lo que se valora es menos "qué stack sabes" y más los fundamentos y
 - Dominio (`site` en `astro.config.mjs`) y despliegue.
 - CV definitivo (ahora hay uno genérico en `public/cv-alan-mclure.pdf`).
 
-## Descartado por ahora
+## Proyectos aparte, enlazados desde el portfolio
+
+- **Blog**: mejor como proyecto personal independiente que como sección del portfolio. Solo tiene sentido si se mantiene. Cuando exista, se enlaza desde Proyectos (una entrada con su categoría y `link`) y, si se quiere, desde otro sitio como el menú o el pie de página.
+- **3D interactivo** (estilo Bruno Simon): también como proyecto aparte, no dentro del portfolio. Mucho coste y no aporta al perfil de la web principal.
+
+## Hecho
+
+- **Rejilla de puntos que reacciona al cursor** (`src/components/DotGrid.astro`): los puntos cercanos al ratón crecen y se ponen rojos. Se desactiva con `prefers-reduced-motion` y no reacciona al tacto.
+
+## Descartado
 
 - **Sección de stack**: aporta poco cuando la IA cambia las herramientas.
-- **Blog**: solo tiene sentido si se mantiene. Una sección vacía o con un artículo perjudica.
-- **3D interactivo** (estilo Bruno Simon): mucho coste y no aporta a este perfil.
 
 ## Fuentes consultadas
 
