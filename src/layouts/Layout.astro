@@ -1,5 +1,8 @@
 ---
 import "@fontsource-variable/onest";
+import "@fontsource-variable/doto";
+import "@fontsource/space-mono/400.css";
+import "@fontsource/space-mono/700.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { ViewTransitions } from "astro:transitions";
@@ -71,16 +74,11 @@ const jsonLd = {
   </head>
 
   <body class="relative text-black dark:text-white">
+    <!-- Flat background with a subtle dot grid -->
     <div
-      class="fixed inset-0 z-[-2] bg-gray-50 dark:bg-gray-950
-      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(251,191,36,0.14),rgba(255,255,255,0.9))]
-      dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(251,191,36,0.08),rgba(0,0,0,0))]"
-    >
-    </div>
-    <!-- Grain texture overlay for tactile depth -->
-    <div
-      class="pointer-events-none fixed inset-0 z-[-1] opacity-[0.035] dark:opacity-[0.05]"
-      style="background-image: url('/noise.svg'); background-size: 200px 200px;"
+      class="fixed inset-0 z-[-2] bg-neutral-100 dark:bg-neutral-950
+      bg-[radial-gradient(rgba(0,0,0,0.13)_1px,transparent_1px)] [background-size:22px_22px]
+      dark:bg-[radial-gradient(rgba(255,255,255,0.11)_1px,transparent_1px)]"
       aria-hidden="true"
     >
     </div>

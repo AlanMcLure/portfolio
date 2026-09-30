@@ -4,20 +4,14 @@ import Badge from "@/components/Badge.astro"
 import GitHubIcon from "@/components/icons/GitHub.astro"
 import LinkedInIcon from "@/components/icons/LinkedIn.astro"
 import MailIcon from "@/components/icons/Mail.astro"
-import SparklesIcon from "@/components/icons/Sparkles.astro"
 import SocialPill from "@/components/SocialPill.astro"
 ---
 
 <div class="max-w-xl">
   <div class="anim-fade-in flex gap-4 mb-6 items-center">
     <div class="relative flex-shrink-0">
-      <div
-        class="absolute inset-0 rounded-full bg-yellow-400/30 dark:bg-yellow-400/20 blur-xl scale-125"
-        aria-hidden="true"
-      >
-      </div>
       <img
-        class="relative rounded-full shadow-2xl size-20 ring-2 ring-yellow-400/60 ring-offset-2 ring-offset-gray-50 dark:ring-offset-gray-950"
+        class="relative rounded-full size-20 ring-1 ring-black/25 dark:ring-white/25"
         src="/foto-perfil-min.jpg"
         alt={personalImageAlt}
       />
@@ -28,33 +22,24 @@ import SocialPill from "@/components/SocialPill.astro"
       rel="noopener noreferrer"
       class="flex items-center transition md:justify-center md:hover:scale-105"
     >
-      <Badge><SparklesIcon class="size-3" /> Disponible para trabajar</Badge>
+      <Badge>Disponible para trabajar</Badge>
     </a>
   </div>
 
   <h1
-    class="anim-fade-in anim-delay-1 text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
+    class="anim-fade-in anim-delay-1 font-dot text-5xl font-bold text-gray-800 sm:text-7xl dark:text-white"
   >
     Hey, soy Alan
   </h1>
 
   <p
-    class="anim-fade-in anim-delay-2 mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
+    class="anim-fade-in anim-delay-2 mt-6 text-xl text-gray-800 dark:text-gray-300"
   >
-  <span>+2 años de experiencia.</span><span
-  class="text-sky-800 dark:text-sky-200"
-  >
-    Software Developer</span
-  >.
-  <span class="text-orange-800 dark:text-orange-200">
-    De Valencia, España</span
-  >. Especializado en
-  <span class="text-red-800 dark:text-red-200"
-    >Angular</span
-  > y
-  <span class="text-green-800 dark:text-green-200"
-    >SpringBoot</span
-  >.
+  <span>+2 años de experiencia.</span>
+  <span class="font-mono text-base">Software Developer</span>.
+  De Valencia, España. Especializado en
+  <span class="font-mono text-base text-accent dark:text-accent-light">Angular</span> y
+  <span class="font-mono text-base text-accent dark:text-accent-light">SpringBoot</span>.
   </p>
 
   <nav

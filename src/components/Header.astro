@@ -34,7 +34,7 @@ const navItems = [
     {
       navItems.map((link) => (
         <a
-          class="nav-link relative text-xs sm:text-sm block px-1.5 sm:px-3 py-2 sm:py-1.5 rounded-full transition-colors duration-200 hover:text-yellow-500 dark:hover:text-yellow-400"
+          class="nav-link relative text-xs sm:text-sm block px-1.5 sm:px-3 py-2 sm:py-1.5 rounded-full transition-colors duration-200 hover:text-accent dark:hover:text-accent-light"
           aria-label={link.label}
           href={link.url}
         >
@@ -58,10 +58,10 @@ const navItems = [
         if (entry.isIntersecting) {
           navItems.forEach((item) => {
             if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("text-yellow-500", "dark:text-yellow-400", "bg-yellow-400/10")
+              item.classList.add("text-accent", "dark:text-accent-light", "bg-accent/10")
               item.classList.remove("text-gray-600", "dark:text-gray-300")
             } else {
-              item.classList.remove("text-yellow-500", "dark:text-yellow-400", "bg-yellow-400/10")
+              item.classList.remove("text-accent", "dark:text-accent-light", "bg-accent/10")
               item.classList.add("text-gray-600", "dark:text-gray-300")
             }
           })
@@ -102,7 +102,7 @@ const navItems = [
     @apply dark:bg-gray-900/80 bg-white/60;
   }
 
-  .nav-link.text-yellow-500 {
+  .nav-link.text-accent {
     @apply font-semibold;
   }
 
