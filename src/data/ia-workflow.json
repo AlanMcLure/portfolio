@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Entender el problema",
+    "description": "Antes de escribir código, o de pedirlo, defino qué se quiere resolver, para quién, qué restricciones hay y cómo sabré que está hecho."
+  },
+  {
+    "title": "Dividir y dar contexto",
+    "description": "Divido el trabajo en pasos pequeños y le doy a la IA el contexto necesario: el código relevante, las convenciones del proyecto y el objetivo de cada paso."
+  },
+  {
+    "title": "Revisar lo que genera",
+    "description": "Leo y entiendo cada cambio antes de aceptarlo. Compruebo la lógica, la seguridad y que encaje con el resto del proyecto. Si no lo entiendo, no lo doy por bueno."
+  },
+  {
+    "title": "Verificar y documentar",
+    "description": "Ejecuto, pruebo y mido el resultado. Cuando algo falla busco la causa en vez de reintentar a ciegas, y dejo anotadas las decisiones y las limitaciones."
+  }
+]

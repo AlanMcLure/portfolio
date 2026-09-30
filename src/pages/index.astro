@@ -2,6 +2,8 @@
 import Layout from "@/layouts/Layout.astro"
 
 import AboutMe from "@/components/AboutMe.astro"
+import AIWorkflow from "@/components/AIWorkflow.astro"
+import Sparkles from "@/components/icons/Sparkles.astro"
 import Briefcase from "@/components/icons/Briefcase.astro"
 import CodeDots from "@/components/icons/CodeDots.astro"
 import education from "@/data/education.json"
@@ -47,6 +49,14 @@ import TitleSection from "@/components/TitleSection.astro"
         Proyectos
       </TitleSection>
       <Projects />
+    </SectionContainer>
+
+    <SectionContainer id="ia">
+      <TitleSection>
+        <Sparkles class="size-8" />
+        Cómo trabajo con IA
+      </TitleSection>
+      <AIWorkflow />
     </SectionContainer>
 
     <SectionContainer id="sobre-mi">
