@@ -7,9 +7,10 @@ import MailIcon from "@/components/icons/Mail.astro"
 import SocialPill from "@/components/SocialPill.astro"
 ---
 
+<div class="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_300px]">
 <div class="max-w-xl">
   <div class="anim-fade-in flex gap-4 mb-6 items-center">
-    <div class="relative flex-shrink-0">
+    <div class="relative flex-shrink-0 lg:hidden">
       <img
         class="relative rounded-full size-20 ring-1 ring-black/25 dark:ring-white/25"
         src="/foto-perfil-min.jpg"
@@ -27,7 +28,7 @@ import SocialPill from "@/components/SocialPill.astro"
   </div>
 
   <h1
-    class="anim-fade-in anim-delay-1 font-dot text-5xl font-bold text-gray-800 sm:text-7xl dark:text-white"
+    class="anim-fade-in anim-delay-1 font-dot text-5xl font-bold text-gray-800 sm:text-6xl dark:text-white"
   >
     Hey, soy Alan
   </h1>
@@ -59,4 +60,23 @@ import SocialPill from "@/components/SocialPill.astro"
       GitHub
     </SocialPill>
   </nav>
+</div>
+
+  <figure class="hidden lg:block anim-fade-in anim-delay-2">
+    <div
+      class="relative overflow-hidden aspect-square rounded-3xl ring-1 ring-black/15 dark:ring-white/20 bg-neutral-200 dark:bg-neutral-900"
+    >
+      <img
+        class="object-cover size-full"
+        src="/foto-perfil.jpg"
+        alt={personalImageAlt}
+      />
+      <figcaption
+        class="absolute inset-x-0 bottom-0 flex items-center gap-2 p-4 font-mono text-xs tracking-wider text-white uppercase bg-gradient-to-t from-black/70 to-transparent"
+      >
+        <span class="rounded-full size-1.5 bg-accent-light" aria-hidden="true"></span>
+        Valencia, ES
+      </figcaption>
+    </div>
+  </figure>
 </div>
