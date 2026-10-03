@@ -100,6 +100,17 @@ const navItems = [
 
   .header-nav {
     @apply dark:bg-gray-900/80 bg-white/60;
+    --nav-bg-from: rgb(255 255 255 / 0);
+    --nav-ring-to: rgb(255 255 255 / 0.1);
+    --nav-border-to: rgb(229 231 235 / 0.2);
+  }
+
+  /* `dark:` variants cannot be generated inside @keyframes (Tailwind emits an
+     invalid `:is(.dark 0%)` selector), so the keyframes read theme variables */
+  :global(.dark) .header-nav {
+    --nav-bg-from: rgb(17 24 39 / 0);
+    --nav-ring-to: rgb(255 255 255 / 0.05);
+    --nav-border-to: rgb(255 255 255 / 0.05);
   }
 
   .nav-link.text-accent {
@@ -108,10 +119,13 @@ const navItems = [
 
   @keyframes nav-appear {
     0% {
-      @apply dark:bg-gray-900/0 bg-white/0 border-transparent shadow-none;
+      @apply border-transparent shadow-none;
+      background-color: var(--nav-bg-from);
     }
     to {
-      @apply shadow-lg ring-1 backdrop-blur-md ring-white/10 dark:ring-white/5 border-gray-200/20 dark:border-white/5;
+      @apply shadow-lg ring-1 backdrop-blur-md;
+      --tw-ring-color: var(--nav-ring-to);
+      border-color: var(--nav-border-to);
     }
   }
 </style>
