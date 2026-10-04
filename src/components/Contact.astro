@@ -17,12 +17,22 @@ const email = "amclurealarcon@gmail.com"
   <p class="max-w-md mt-4 text-gray-700 dark:text-gray-300 text-pretty">
     Si tienes un proyecto, una idea o una oferta, escríbeme y lo hablamos.
   </p>
-  <a
-    href={`mailto:${email}`}
-    class="block mt-6 font-mono text-sm text-accent dark:text-accent-light hover:underline underline-offset-4 break-all"
-  >
-    {email}
-  </a>
+  <div class="flex flex-wrap items-center gap-3 mt-6">
+    <a
+      href={`mailto:${email}`}
+      class="font-mono text-sm text-accent dark:text-accent-light hover:underline underline-offset-4 break-all"
+    >
+      {email}
+    </a>
+    <button
+      type="button"
+      data-copy-email={email}
+      class="px-3 py-0.5 font-mono text-xs tracking-wider text-gray-700 uppercase transition border rounded-full border-black/20 dark:border-white/25 dark:text-white/80 hover:border-accent hover:text-accent dark:hover:text-accent-light focus:outline-none focus-visible:ring focus-visible:ring-accent/80 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-950"
+    >
+      Copiar
+    </button>
+    <span class="font-mono text-xs text-gray-600 dark:text-gray-400" role="status" data-copy-status></span>
+  </div>
 
   <div class="flex flex-wrap gap-4 mt-8">
     <a
@@ -46,3 +56,21 @@ const email = "amclurealarcon@gmail.com"
     </SocialPill>
   </div>
 </div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const button = document.querySelector<HTMLButtonElement>("[data-copy-email]")
+    const status = document.querySelector<HTMLElement>("[data-copy-status]")
+    if (!button || !status) return
+
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copyEmail ?? "")
+        status.textContent = "Copiado"
+      } catch {
+        status.textContent = "No se pudo copiar"
+      }
+      setTimeout(() => (status.textContent = ""), 2000)
+    })
+  })
+</script>
