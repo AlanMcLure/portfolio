@@ -26,6 +26,18 @@
       "font:12px monospace",
     )
 
+    // Playful tab title while the page is in the background
+    let originalTitle = ""
+    const AWAY_TITLE = "Vuelve, te echo de menos"
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") {
+        originalTitle = document.title
+        document.title = AWAY_TITLE
+      } else if (document.title === AWAY_TITLE) {
+        document.title = originalTitle
+      }
+    })
+
     let progress = 0
     let hideTimer: number | undefined
 

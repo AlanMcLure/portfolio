@@ -30,14 +30,12 @@ Detalles de diseño y extras que no son urgentes:
 - **Tema "terminal"**: tercera opción en el selector, con fuente mono y texto verde, o un modo dot-matrix puro.
 - **Comandos en la consola** del navegador (`alan.hire()`, `alan.skills()`), además del saludo que ya hay.
 - **Clic repetido en el logo** o en un punto de la rejilla: pequeño efecto.
-- **`<title>` dinámico** al salir de la pestaña.
 - **Páginas `/uses` y `/now`**, y redirecciones cortas como `/hire` o `/cv`.
-- **Scroll**: barra de progreso de lectura en los casos de estudio, e indicador del nav que se desliza entre secciones.
+- **Scroll**: indicador del nav que se desliza entre secciones.
 - **Tarjetas de proyecto**: pista "Ver caso →" al pasar el cursor y animación dot-matrix en los títulos.
 - **Contraste**: revisar el texto gris pequeño en mono sobre el fondo de puntos, en claro y oscuro.
 - **Imágenes**: `width`/`height` en las de proyecto y una imagen para compartir por proyecto (`og`).
 - **Versión en inglés**: la tarea más grande, solo si se busca fuera.
-- **Pie**: fecha de última actualización en mono.
 
 ## Proyectos aparte, enlazados desde el portfolio
 
@@ -50,6 +48,7 @@ Detalles de diseño y extras que no son urgentes:
 
 - **Detalles de diseño**: selección de texto en rojo, rejilla de puntos atenuada sobre texto, hovers unificados de botones, scrollbar fina, página 404, enlace "Saltar al contenido", botón para copiar el email y transiciones compartidas en proyectos.
 - **Extras para desarrolladores**: `humans.txt`, `.well-known/security.txt` (con el email de contacto actual y caducidad el 2027-10-04, que habrá que renovar), saludo en la consola, código Konami (ola de puntos rojos) y 404 con humor.
+- **Más detalles**: barra de progreso de lectura en las páginas de proyecto (CSS puro, solo con `prefers-reduced-motion: no-preference`), `<title>` que cambia al salir de la pestaña y fecha de última actualización en el pie (la del build).
 
 ## Descartado
 

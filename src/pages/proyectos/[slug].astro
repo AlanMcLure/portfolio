@@ -62,6 +62,7 @@ const subtitle = project.shortTitle
   title={`${heading} · Proyecto · Alan McLure`}
   description={project.description}
 >
+  <div class="reading-progress" aria-hidden="true"></div>
   <main id="contenido" class="px-4">
     <SectionContainer class="py-32 md:py-40">
       <a
@@ -205,3 +206,35 @@ const subtitle = project.shortTitle
     </SectionContainer>
   </main>
 </Layout>
+
+<style>
+  /* Reading progress bar, driven by the page scroll (no JS) */
+  .reading-progress {
+    display: none;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reading-progress {
+        display: block;
+        position: fixed;
+        inset: 0 0 auto 0;
+        z-index: 20;
+        height: 2px;
+        background: #d71921;
+        transform-origin: 0 50%;
+        animation: reading-progress linear both;
+        animation-timeline: scroll(root);
+      }
+    }
+  }
+
+  @keyframes reading-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+</style>
