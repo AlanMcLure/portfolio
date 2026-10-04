@@ -12,6 +12,8 @@
 <script>
   const SPACING = 22
   const RADIUS = 120
+  const TEXT_SELECTOR = "p, h1, h2, h3, h4, li, a, button, label, time, blockquote"
+  const TEXT_INTENSITY = 0.25
 
   let cleanup: (() => void) | undefined
 
@@ -91,7 +93,10 @@
       if (event.pointerType === "touch") return
       targetX = event.clientX
       targetY = event.clientY
-      targetIntensity = 1
+      // Keep the effect subtle over text so the dots don't hurt legibility
+      const overText =
+        event.target instanceof Element && event.target.closest(TEXT_SELECTOR)
+      targetIntensity = overText ? TEXT_INTENSITY : 1
       schedule()
     }
 
