@@ -105,13 +105,34 @@
       schedule()
     }
 
+    // Konami code: a wave of red dots sweeps across the screen
+    const onKonami = () => {
+      const start = performance.now()
+      const step = (now: number) => {
+        const t = (now - start) / 1600
+        if (t >= 1) {
+          targetIntensity = 0
+          schedule()
+          return
+        }
+        targetX = t * width
+        targetY = height / 2 + Math.sin(t * 10) * height * 0.25
+        targetIntensity = 1
+        schedule()
+        requestAnimationFrame(step)
+      }
+      requestAnimationFrame(step)
+    }
+
     resize()
+    window.addEventListener("konami", onKonami)
     window.addEventListener("resize", resize)
     window.addEventListener("pointermove", onMove)
     document.documentElement.addEventListener("mouseleave", onLeave)
 
     cleanup = () => {
       cancelAnimationFrame(frame)
+      window.removeEventListener("konami", onKonami)
       window.removeEventListener("resize", resize)
       window.removeEventListener("pointermove", onMove)
       document.documentElement.removeEventListener("mouseleave", onLeave)

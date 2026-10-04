@@ -1,0 +1,16 @@
+/* TEAM */
+Developer: Alan McLure Alarcón
+Contact: amclurealarcon@gmail.com
+GitHub: https://github.com/AlanMcLure
+LinkedIn: https://linkedin.com/in/alanmclurealarcon
+Location: Valencia, España
+
+/* THANKS */
+Base del proyecto: midudev/porfolio.dev (https://github.com/midudev/porfolio.dev)
+
+/* SITE */
+Last update: 2026/10/04
+Language: Español
+Standards: HTML5, CSS3
+Components: Astro, Tailwind CSS
+Typography: Onest, Doto, Space Mono

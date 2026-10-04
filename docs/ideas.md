@@ -22,6 +22,23 @@ Con la IA, lo que se valora es menos "qué stack sabes" y más los fundamentos y
 - Dominio (`site` en `astro.config.mjs`) y despliegue.
 - CV definitivo (ahora hay uno genérico en `public/cv-alan-mclure.pdf`).
 
+## Ideas para más adelante
+
+Detalles de diseño y extras que no son urgentes:
+
+- **Terminal oculta**: al pulsar `` ` `` o `/`, una mini terminal con `help`, `about`, `projects`, `contact`, `sudo hire alan`. Es lo más vistoso y lo que más mantenimiento pide.
+- **Tema "terminal"**: tercera opción en el selector, con fuente mono y texto verde, o un modo dot-matrix puro.
+- **Comandos en la consola** del navegador (`alan.hire()`, `alan.skills()`), además del saludo que ya hay.
+- **Clic repetido en el logo** o en un punto de la rejilla: pequeño efecto.
+- **`<title>` dinámico** al salir de la pestaña.
+- **Páginas `/uses` y `/now`**, y redirecciones cortas como `/hire` o `/cv`.
+- **Scroll**: barra de progreso de lectura en los casos de estudio, e indicador del nav que se desliza entre secciones.
+- **Tarjetas de proyecto**: pista "Ver caso →" al pasar el cursor y animación dot-matrix en los títulos.
+- **Contraste**: revisar el texto gris pequeño en mono sobre el fondo de puntos, en claro y oscuro.
+- **Imágenes**: `width`/`height` en las de proyecto y una imagen para compartir por proyecto (`og`).
+- **Versión en inglés**: la tarea más grande, solo si se busca fuera.
+- **Pie**: fecha de última actualización en mono.
+
 ## Proyectos aparte, enlazados desde el portfolio
 
 - **Blog**: mejor como proyecto personal independiente que como sección del portfolio. Solo tiene sentido si se mantiene. Cuando exista, se enlaza desde Proyectos (una entrada con su categoría y `link`) y, si se quiere, desde otro sitio como el menú o el pie de página.
@@ -30,6 +47,9 @@ Con la IA, lo que se valora es menos "qué stack sabes" y más los fundamentos y
 ## Hecho
 
 - **Rejilla de puntos que reacciona al cursor** (`src/components/DotGrid.astro`): los puntos cercanos al ratón crecen y se ponen rojos. Se desactiva con `prefers-reduced-motion` y no reacciona al tacto.
+
+- **Detalles de diseño**: selección de texto en rojo, rejilla de puntos atenuada sobre texto, hovers unificados de botones, scrollbar fina, página 404, enlace "Saltar al contenido", botón para copiar el email y transiciones compartidas en proyectos.
+- **Extras para desarrolladores**: `humans.txt`, `.well-known/security.txt` (con el email de contacto actual y caducidad el 2027-10-04, que habrá que renovar), saludo en la consola, código Konami (ola de puntos rojos) y 404 con humor.
 
 ## Descartado
 

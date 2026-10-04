@@ -1,0 +1,55 @@
+---
+// Small surprises for developers: a console greeting and the Konami code.
+---
+
+<div
+  id="egg-toast"
+  role="status"
+  aria-live="polite"
+  class="fixed z-50 px-4 py-2 font-mono text-xs tracking-wider text-white uppercase transition-opacity duration-300 -translate-x-1/2 rounded-full opacity-0 pointer-events-none bottom-6 left-1/2 bg-accent"
+>
+</div>
+
+<script>
+  const KONAMI = [
+    "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+    "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
+    "b", "a",
+  ]
+
+  if (!(window as any).__eggsReady) {
+    ;(window as any).__eggsReady = true
+
+    console.log(
+      "%c¿Mirando el código?%c\nMe gusta. Si quieres hablar: amclurealarcon@gmail.com",
+      "color:#d71921;font:700 16px monospace",
+      "font:12px monospace",
+    )
+
+    let progress = 0
+    let hideTimer: number | undefined
+
+    const toast = (text: string) => {
+      const el = document.getElementById("egg-toast")
+      if (!el) return
+      el.textContent = text
+      el.style.opacity = "1"
+      clearTimeout(hideTimer)
+      hideTimer = window.setTimeout(() => (el.style.opacity = "0"), 2500)
+    }
+
+    window.addEventListener("keydown", (event) => {
+      const target = event.target as HTMLElement | null
+      if (target?.closest("input, textarea, [contenteditable]")) return
+
+      const key = event.key.length === 1 ? event.key.toLowerCase() : event.key
+      progress = key === KONAMI[progress] ? progress + 1 : key === KONAMI[0] ? 1 : 0
+
+      if (progress === KONAMI.length) {
+        progress = 0
+        toast("↑↑↓↓←→←→BA · acceso concedido")
+        window.dispatchEvent(new CustomEvent("konami"))
+      }
+    })
+  }
+</script>
