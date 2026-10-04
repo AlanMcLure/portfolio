@@ -67,6 +67,7 @@ const pad = (n: number) => String(n).padStart(2, "0")
           <div class="relative flex flex-col items-center overflow-clip rounded-2xl border border-black/15 dark:border-white/15 transition-all duration-500 ease-in-out md:group-hover:-translate-y-1 md:group-hover:border-accent/50 md:group-hover:shadow-[0_20px_60px_-10px_rgba(215,25,33,0.2)]">
             {image ? (
               <img
+                transition:name={slug ? `project-image-${slug}` : undefined}
                 alt={title}
                 class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
                 loading="lazy"
@@ -88,7 +89,7 @@ const pad = (n: number) => String(n).padStart(2, "0")
             {pad(i + 1)} / {pad(PROJECTS.length)} · {category}
           </span>
           <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-            {slug ? <a href={`/proyectos/${slug}`} class="hover:underline underline-offset-4">{title}</a> : title}
+            {slug ? <a href={`/proyectos/${slug}`} transition:name={`project-title-${slug}`} class="hover:underline underline-offset-4">{title}</a> : title}
           </h3>
           <ul class="flex flex-row flex-wrap gap-2 mt-3">
             {tags.map((tag) => (

@@ -74,7 +74,7 @@ const subtitle = project.shortTitle
       <p class="mt-8 font-mono text-xs tracking-wider text-accent dark:text-accent-light uppercase">
         {project.category}
       </p>
-      <h1 class="mt-2 text-5xl font-black text-gray-800 font-dot sm:text-6xl dark:text-white">
+      <h1 transition:name={`project-title-${project.slug}`} class="mt-2 text-5xl font-black text-gray-800 font-dot sm:text-6xl dark:text-white">
         {heading}
       </h1>
       {subtitle && (
@@ -117,6 +117,7 @@ const subtitle = project.shortTitle
       {project.image && (
         <div class="mt-12 overflow-hidden border rounded-2xl border-black/15 dark:border-white/15">
           <img
+            transition:name={`project-image-${project.slug}`}
             src={project.image}
             alt={project.title}
             class="object-cover object-top w-full"
