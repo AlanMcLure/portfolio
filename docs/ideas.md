@@ -48,6 +48,7 @@ Detalles de diseño y extras que no son urgentes:
 
 - **Detalles de diseño**: selección de texto en rojo, rejilla de puntos atenuada sobre texto, hovers unificados de botones, scrollbar fina, página 404, enlace "Saltar al contenido", botón para copiar el email y transiciones compartidas en proyectos.
 - **Extras para desarrolladores**: `humans.txt`, `.well-known/security.txt` (con el email de contacto actual y caducidad el 2027-10-04, que habrá que renovar), saludo en la consola, código Konami (ola de puntos rojos) y 404 con humor.
+- **Atajos de teclado** (`src/components/Eggs.astro`): escribir `sudo hire alan` (lleva a Contacto), `Ctrl/Cmd + K` para una paleta de comandos con secciones, proyectos y copiar el email, y `?` para una ayuda con los atajos.
 - **Más detalles**: barra de progreso de lectura en las páginas de proyecto (CSS puro, solo con `prefers-reduced-motion: no-preference`), `<title>` que cambia al salir de la pestaña y fecha de última actualización en el pie (la del build).
 
 ## Descartado

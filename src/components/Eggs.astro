@@ -1,5 +1,30 @@
 ---
-// Small surprises for developers: a console greeting and the Konami code.
+// Small surprises and shortcuts for developers: console greeting, Konami code,
+// typing "sudo hire alan", a Ctrl+K command palette and a "?" help dialog.
+import projectsData from "@/data/projects.json"
+
+const email = "amclurealarcon@gmail.com"
+
+const sections = [
+  { label: "Experiencia", href: "/#experiencia" },
+  { label: "Formación", href: "/#formacion" },
+  { label: "Proyectos", href: "/#proyectos" },
+  { label: "Cómo trabajo con IA", href: "/#ia" },
+  { label: "Sobre mí", href: "/#sobre-mi" },
+  { label: "Contacto", href: "/#contacto" },
+]
+
+const projects = (projectsData as { slug?: string; shortTitle?: string; title: string }[])
+  .filter((project) => project.slug)
+  .map((project) => ({
+    label: `Proyecto: ${project.shortTitle ?? project.title}`,
+    href: `/proyectos/${project.slug}`,
+  }))
+
+const links = [...sections, ...projects]
+
+const itemClass =
+  "flex w-full items-center px-3 py-2 text-left text-sm rounded-lg text-gray-800 dark:text-gray-200 hover:bg-black/5 dark:hover:bg-white/10 aria-selected:bg-accent/10 aria-selected:text-accent dark:aria-selected:text-accent-light"
 ---
 
 <div
@@ -10,12 +35,75 @@
 >
 </div>
 
+<dialog
+  id="egg-palette"
+  aria-label="Paleta de comandos"
+  class="egg-dialog w-[min(32rem,calc(100vw-2rem))] p-0 text-gray-800 bg-white border rounded-2xl border-black/15 dark:border-white/15 dark:bg-neutral-900 dark:text-white"
+>
+  <input
+    id="egg-palette-input"
+    type="text"
+    autocomplete="off"
+    placeholder="Ir a…"
+    aria-label="Buscar sección o proyecto"
+    class="w-full px-4 py-3 text-sm bg-transparent border-b border-black/10 dark:border-white/10 focus:outline-none"
+  />
+  <ul id="egg-palette-list" class="p-2 overflow-y-auto max-h-72">
+    {
+      links.map((link) => (
+        <li data-label={link.label.toLowerCase()}>
+          <a href={link.href} class={itemClass}>{link.label}</a>
+        </li>
+      ))
+    }
+    <li data-label="copiar email correo">
+      <button type="button" data-copy-email={email} class={itemClass}>Copiar email</button>
+    </li>
+  </ul>
+  <p id="egg-palette-empty" hidden class="px-4 py-3 font-mono text-xs text-gray-500 dark:text-gray-400">
+    Sin resultados
+  </p>
+</dialog>
+
+<dialog
+  id="egg-help"
+  aria-label="Atajos de teclado"
+  class="egg-dialog w-[min(28rem,calc(100vw-2rem))] p-6 text-gray-800 bg-white border rounded-2xl border-black/15 dark:border-white/15 dark:bg-neutral-900 dark:text-white"
+>
+  <p class="text-2xl font-black font-dot">Atajos</p>
+  <dl class="mt-4 space-y-3 text-sm">
+    <div class="flex items-center justify-between gap-4">
+      <dt class="font-mono text-xs text-accent dark:text-accent-light">Ctrl + K</dt>
+      <dd>Paleta de comandos</dd>
+    </div>
+    <div class="flex items-center justify-between gap-4">
+      <dt class="font-mono text-xs text-accent dark:text-accent-light">?</dt>
+      <dd>Esta ayuda</dd>
+    </div>
+    <div class="flex items-center justify-between gap-4">
+      <dt class="font-mono text-xs text-accent dark:text-accent-light">Esc</dt>
+      <dd>Cerrar</dd>
+    </div>
+  </dl>
+  <p class="mt-5 font-mono text-xs text-gray-500 dark:text-gray-400">
+    Hay más cosas escondidas. Pista: los desarrolladores escriben cosas raras.
+  </p>
+</dialog>
+
+<style is:global>
+  .egg-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+  }
+</style>
+
 <script>
   const KONAMI = [
     "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
     "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
     "b", "a",
   ]
+  const SUDO = "sudo hire alan"
 
   if (!(window as any).__eggsReady) {
     ;(window as any).__eggsReady = true
@@ -39,6 +127,7 @@
     })
 
     let progress = 0
+    let typed = ""
     let hideTimer: number | undefined
 
     const toast = (text: string) => {
@@ -50,9 +139,110 @@
       hideTimer = window.setTimeout(() => (el.style.opacity = "0"), 2500)
     }
 
+    const dialog = (id: string) => document.getElementById(id) as HTMLDialogElement | null
+    const anyOpen = () => !!document.querySelector("dialog[open]")
+
+    // ── Command palette ────────────────────────────────────────────────
+    let active = 0
+
+    const visibleItems = () =>
+      Array.from(document.querySelectorAll<HTMLElement>("#egg-palette-list li")).filter(
+        (li) => !li.hidden,
+      )
+
+    const highlight = () => {
+      const items = visibleItems()
+      active = Math.max(0, Math.min(active, items.length - 1))
+      document
+        .querySelectorAll("#egg-palette-list [aria-selected]")
+        .forEach((el) => el.removeAttribute("aria-selected"))
+      const target = items[active]?.firstElementChild
+      target?.setAttribute("aria-selected", "true")
+      target?.scrollIntoView({ block: "nearest" })
+    }
+
+    const filter = () => {
+      const input = document.getElementById("egg-palette-input") as HTMLInputElement | null
+      const query = (input?.value ?? "").trim().toLowerCase()
+      document.querySelectorAll<HTMLElement>("#egg-palette-list li").forEach((li) => {
+        li.hidden = !!query && !(li.dataset.label ?? "").includes(query)
+      })
+      const empty = document.getElementById("egg-palette-empty")
+      if (empty) empty.hidden = visibleItems().length > 0
+      active = 0
+      highlight()
+    }
+
+    const openPalette = () => {
+      const palette = dialog("egg-palette")
+      if (!palette || palette.open) return
+      dialog("egg-help")?.close()
+      palette.showModal()
+      const input = document.getElementById("egg-palette-input") as HTMLInputElement | null
+      if (input) input.value = ""
+      filter()
+      input?.focus()
+    }
+
+    const openHelp = () => {
+      const help = dialog("egg-help")
+      if (!help || help.open || anyOpen()) return
+      help.showModal()
+    }
+
+    // ── Sudo hire alan ─────────────────────────────────────────────────
+    const sudo = () => {
+      toast("Permiso concedido · contratando a Alan…")
+      window.dispatchEvent(new CustomEvent("konami"))
+      window.setTimeout(() => {
+        window.location.href = "/#contacto"
+      }, 900)
+    }
+
     window.addEventListener("keydown", (event) => {
       const target = event.target as HTMLElement | null
-      if (target?.closest("input, textarea, [contenteditable]")) return
+      const typing = !!target?.closest("input, textarea, [contenteditable]")
+
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault()
+        const palette = dialog("egg-palette")
+        if (palette?.open) palette.close()
+        else openPalette()
+        return
+      }
+
+      // Arrow navigation inside the open palette
+      if (dialog("egg-palette")?.open) {
+        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+          event.preventDefault()
+          active += event.key === "ArrowDown" ? 1 : -1
+          const count = visibleItems().length
+          if (count) active = (active + count) % count
+          highlight()
+        } else if (event.key === "Enter") {
+          event.preventDefault()
+          ;(visibleItems()[active]?.firstElementChild as HTMLElement | undefined)?.click()
+        }
+        return
+      }
+
+      if (typing || event.ctrlKey || event.metaKey || event.altKey || anyOpen()) return
+
+      if (event.key === "?") {
+        event.preventDefault()
+        openHelp()
+        return
+      }
+
+      // "sudo hire alan" typed anywhere on the page
+      if (event.key.length === 1) {
+        typed = (typed + event.key.toLowerCase()).slice(-SUDO.length)
+        if (typed === SUDO) {
+          typed = ""
+          sudo()
+          return
+        }
+      }
 
       const key = event.key.length === 1 ? event.key.toLowerCase() : event.key
       progress = key === KONAMI[progress] ? progress + 1 : key === KONAMI[0] ? 1 : 0
@@ -62,6 +252,37 @@
         toast("↑↑↓↓←→←→BA · acceso concedido")
         window.dispatchEvent(new CustomEvent("konami"))
       }
+    })
+
+    document.addEventListener("input", (event) => {
+      if ((event.target as HTMLElement | null)?.id === "egg-palette-input") filter()
+    })
+
+    document.addEventListener("click", async (event) => {
+      const target = event.target as HTMLElement | null
+      if (!target) return
+
+      // Click on the backdrop closes the dialog
+      if (target instanceof HTMLDialogElement) {
+        target.close()
+        return
+      }
+
+      if (!target.closest("#egg-palette")) return
+
+      const copy = target.closest<HTMLElement>("[data-copy-email]")
+      if (copy && copy.closest("#egg-palette")) {
+        dialog("egg-palette")?.close()
+        try {
+          await navigator.clipboard.writeText(copy.dataset.copyEmail ?? "")
+          toast("Email copiado")
+        } catch {
+          toast("No se pudo copiar")
+        }
+        return
+      }
+
+      if (target.closest("a")) dialog("egg-palette")?.close()
     })
   }
 </script>
