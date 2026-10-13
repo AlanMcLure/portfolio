@@ -37,6 +37,17 @@ Detalles de diseño y extras que no son urgentes:
 - **Imágenes**: `width`/`height` en las de proyecto y una imagen para compartir por proyecto (`og`).
 - **Versión en inglés**: la tarea más grande, solo si se busca fuera.
 
+## Ideas inspiradas en otros portfolios
+
+Vistas en https://pauwma.com/ (solo el contenido estático, sin ver el comportamiento):
+
+- **Secciones numeradas** (01–06) en los títulos, en línea con el "01 / 04" de las tarjetas de proyecto.
+- **Reloj y ubicación en vivo** en mono (ciudad, coordenadas y hora local). Confirmar las coordenadas antes.
+- **Insignia de estado** ("Abierto a ofertas"), solo si es cierto.
+- **Página `/setup`** con las herramientas que uso (hay que escribirla).
+- **Libro de visitas**: pide base de datos y moderación; descartado por ahora.
+- **Más atajos**: `g` + `h`/`p`/`c` para saltar de sección, `j`/`k` para pasar a la siguiente o anterior y `1`–`6` para ir directo.
+
 ## Proyectos aparte, enlazados desde el portfolio
 
 - **Blog**: mejor como proyecto personal independiente que como sección del portfolio. Solo tiene sentido si se mantiene. Cuando exista, se enlaza desde Proyectos (una entrada con su categoría y `link`) y, si se quiere, desde otro sitio como el menú o el pie de página.
@@ -48,7 +59,7 @@ Detalles de diseño y extras que no son urgentes:
 
 - **Detalles de diseño**: selección de texto en rojo, rejilla de puntos atenuada sobre texto, hovers unificados de botones, scrollbar fina, página 404, enlace "Saltar al contenido", botón para copiar el email y transiciones compartidas en proyectos.
 - **Extras para desarrolladores**: `humans.txt`, `.well-known/security.txt` (con el email de contacto actual y caducidad el 2027-10-04, que habrá que renovar), saludo en la consola, código Konami (ola de puntos rojos) y 404 con humor.
-- **Atajos de teclado** (`src/components/Eggs.astro`): escribir `sudo hire alan` (lleva a Contacto), `Ctrl/Cmd + K` para una paleta de comandos con secciones, proyectos y copiar el email, y `?` para una ayuda con los atajos.
+- **Atajos de teclado** (`src/components/Eggs.astro`): escribir `sudo hire alan` (lleva a Contacto), `Ctrl/Cmd + K` para una paleta de comandos con secciones, proyectos y copiar el email, `?` o `Ctrl + /` para una ayuda con los atajos, `/` para abrir la paleta, `T` para cambiar el tema y `C` para copiar el email. La paleta también descarga el CV, abre GitHub, LinkedIn y el código fuente, y cambia el tema.
 - **Más detalles**: barra de progreso de lectura en las páginas de proyecto (CSS puro, solo con `prefers-reduced-motion: no-preference`), `<title>` que cambia al salir de la pestaña y fecha de última actualización en el pie (la del build).
 
 ## Descartado
